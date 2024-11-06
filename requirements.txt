@@ -1,0 +1,9 @@
+kafka-python
+selenium
+webdriver-manager
+redis
+logging
+pydantic
+pytz
+pydantic
+Jinja2

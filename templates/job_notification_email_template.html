@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: #2557a7;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .job-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .job-title {
+            color: #2557a7;
+            font-size: 18px;
+            margin: 0 0 10px 0;
+        }
+        .company-name {
+            color: #666;
+            font-weight: bold;
+            margin: 0 0 5px 0;
+        }
+        .job-details {
+            margin: 10px 0;
+            color: #666;
+        }
+        .skills-list {
+            margin: 10px 0;
+            padding: 0;
+            list-style: none;
+        }
+        .skill-tag {
+            display: inline-block;
+            background: #e1ecf4;
+            color: #39739d;
+            padding: 2px 8px;
+            border-radius: 3px;
+            margin: 2px;
+            font-size: 12px;
+        }
+        .apply-button {
+            display: inline-block;
+            background: #2557a7;
+            color: white !important;
+            padding: 8px 15px;
+            text-decoration: none !important;
+            border-radius: 3px;
+            margin-top: 10px;
+        }
+
+        .apply-button:hover {
+            background: #1b3c6e;
+        }
+        .summary {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .location-badge {
+            background: #f0f0f0;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            color: #666;
+        }
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+        .salary {
+            color: #28a745;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Job Opportunities Digest</h1>
+        <p>{{ today_date }}</p>
+    </div>
+
+    <div class="summary">
+        <h3>Summary</h3>
+        <p>We found {{ jobs|length }} new job opportunities matching your criteria.</p>
+    </div>
+
+    {% for job in jobs %}
+    <div class="job-card">
+        <h2 class="job-title">{{ job.title }}</h2>
+        <p class="company-name">{{ job.company }}</p>
+        
+        <div class="job-details">
+            <span class="location-badge">
+                <i>📍</i> {{ job.city|default('N/A')}}
+            </span>
+          
+        </div>
+        <a href="{{ job.link }}" class="apply-button">View Job & Apply</a>
+    </div>
+    {% endfor %}
+
+    <div class="footer">
+        <p>You received this email because you subscribed to job alerts matching your criteria.</p>
+        <p>Sent by Your Job Board | <a href="{{ unsubscribe_url }}">Unsubscribe</a></p>
+    </div>
+</body>
+</html>
